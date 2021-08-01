@@ -16,7 +16,7 @@ Plution appends a payload to supplied URLs, naviguates to each URL with headless
  item 1a cat URLs.txt|plution
 
 * Scan with a supplied payload rather than hardcoded one:
-cat URLs.txt|plution -p '__proto__.zzzc=example'
+cat URLs.txt|plution -p '\__proto__.zzzc=example'
 **Note on custom payloads: The variable you are hoping to inject must be called or render to "zzzc". This is because 'window.zzzc' will be run on each page to verify pollution.**
 
 * Output:

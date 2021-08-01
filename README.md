@@ -12,14 +12,14 @@ This is not a one stop shop. Prototype pollution is a complicated beast. This to
 Plution appends a payload to supplied URLs, naviguates to each URL with headless chrome and runs javascript on the page to verify if a prototype was successfully polluted.
 
 # how it is used
-* item 1 Basic scan, output only to screen:
-* item 1a cat URLs.txt|plution
+* Basic scan, output only to screen:
+ item 1a cat URLs.txt|plution
 
-Scan with a supplied payload rather than hardcoded one:
+* Scan with a supplied payload rather than hardcoded one:
 cat URLs.txt|plution -p '__proto__.zzzc=example'
-Note on custom payloads: The variable you are hoping to inject must be called or render to "zzzc". This is because 'window.zzzc' will be run on each page to verify pollution.
+**Note on custom payloads: The variable you are hoping to inject must be called or render to "zzzc". This is because 'window.zzzc' will be run on each page to verify pollution.**
 
-Output:
+* Output:
 Passing '-o' followed by a location will output only URLs of pages that were successfully polluted.
 
 

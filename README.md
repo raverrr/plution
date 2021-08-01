@@ -13,7 +13,7 @@ Plution appends a payload to supplied URLs, naviguates to each URL with headless
 
 # how it is used
 * Basic scan, output only to screen:<br />
- `item 1a cat URLs.txt | plution`
+ `cat URLs.txt | plution`
 
 * Scan with a supplied payload rather than hardcoded one:<br />
 `cat URLs.txt|plution -p '__proto__.zzzc=example'`<br />
@@ -21,5 +21,11 @@ Plution appends a payload to supplied URLs, naviguates to each URL with headless
 
 * Output:<br />
 `Passing '-o' followed by a location will output only URLs of pages that were successfully polluted.`
+
+# questions and answers
+* How do I install it?
+`go get -u https://github.com/raverrr/plution`
+* why specifically limit it to checking if window.zzzc resolves?
+`zzzc is a short pattern that is unlikely to already be in a prototype. If you want more freedom in regards to the javascript use https://github.com/detectify/page-fetch instead`
 
 

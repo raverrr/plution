@@ -1,5 +1,6 @@
 # plution
-Prototype pollution scanner using headless chrome
+<h2>Prototype pollution scanner using headless chrome</h2>
+
 ![alt text](https://i.imgur.com/xumApSF.png)
 
 # What this is

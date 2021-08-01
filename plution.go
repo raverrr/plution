@@ -26,16 +26,21 @@ func init() {
 	fmt.Println(color.BlueString("Scans URLs for Prototype Pollution via query parameter."))
 	fmt.Println(color.YellowString("=================================================="))
 	fmt.Println(color.CyanString("Credits:"))
-	fmt.Println("-@tomnomnom for Page-fetch")
+	fmt.Println("-@tomnomnom for inspiring me with Page-fetch")
 	fmt.Println("-Blackfan (github.com/BlackFan/client-side-prototype-pollution)")
 	fmt.Println(color.YellowString("==================================================\n"))
 
 }
 
+var output string
+var concurrency int
+var customPayload string
+var URLpayload string
+
 func main() {
 	log.SetFlags(0) //supress date and time on each line
-	var output string
-	var concurrency int
+
+	flag.StringVar(&customPayload, "p", "", "--> Set custom URL payload (The varable RENDERED must be called 'zzzc')"+"\n") //do this with hasempty
 	flag.StringVar(&output, "o", "/dev/null", "--> Output (Will only output vulnerable URLs)"+"\n")
 	flag.IntVar(&concurrency, "c", 5, "--> Number of concurrent threads (default 5)"+"\n")
 	flag.Parse()
@@ -81,9 +86,11 @@ func main() {
 				var res string
 
 				err := chromedp.Run(ctx,
-					chromedp.Navigate(requestURL+hasQuery(requestURL)),
-					chromedp.Evaluate("window.foo", &res), //run the user JS
+					chromedp.Navigate(requestURL+hasQuery(requestURL)+URLpayload),
+					chromedp.Evaluate("window.zzzc", &res),
 				)
+				fmt.Println(requestURL + hasQuery(requestURL) + URLpayload)
+
 				if res != "" || err.Error() == "json: cannot unmarshal array into Go value of type string" { //fix this hack
 					log.Printf("%s: %v", color.GreenString("[+]")+requestURL, color.GreenString("Vulnerable!"))
 					datawriter.WriteString(requestURL + "\n")
@@ -110,11 +117,34 @@ func main() {
 func hasQuery(url string) string {
 	var Qmark = regexp.MustCompile(`\?`)
 	var p = ""
+	urlPayload()
 	if Qmark.MatchString(url) {
-		p = "&constructor.prototype.foo=bar&__proto__[foo]=bar&constructor[prototype][foo]=bar&__proto__.foo=bar#__proto__[foo]=bar"
+		p = "&"
 
 	} else {
-		p = "?constructor.prototype.foo=bar&__proto__[foo]=bar&constructor[prototype][foo]=bar&__proto__.foo=bar#__proto__[foo]=bar"
+		p = "?"
 	}
 	return p
 }
+
+//todo add chuncking
+func urlPayload() {
+
+	if !containsEmpty(customPayload) {
+		URLpayload = customPayload
+	} else {
+		URLpayload = "constructor.prototype.zzzc=cccz&__proto__[zzzc]=cccz&constructor[prototype][zzzc]=cccz&__proto__.zzzc=cccz#__proto__[zzzc]=cccz"
+
+	}
+}
+
+//check if header flags are empty
+func containsEmpty(ss ...string) bool {
+	for _, s := range ss {
+		if s == "" {
+			return true
+		}
+	}
+	return false
+}
+

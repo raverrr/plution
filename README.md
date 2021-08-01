@@ -1,6 +1,6 @@
 # plution
 Prototype pollution scanner using headless chrome
-
+![alt text](https://i.imgur.com/xumApSF.png)
 
 # What this is
 Plution is a convenient way to scan at scale for pages that are vulnerable to client side prototype pollution via a URL payload. In the default configuration, it will use a hardcoded payload that can detect 11 of the cases documented here: https://github.com/BlackFan/client-side-prototype-pollution/tree/master/pp

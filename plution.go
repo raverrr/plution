@@ -89,7 +89,7 @@ func main() {
 					chromedp.Navigate(requestURL+hasQuery(requestURL)+URLpayload),
 					chromedp.Evaluate("window.zzzc", &res),
 				)
-				fmt.Println(requestURL + hasQuery(requestURL) + URLpayload)
+				//fmt.Println(requestURL + hasQuery(requestURL) + URLpayload)
 
 				if res != "" || err.Error() == "json: cannot unmarshal array into Go value of type string" { //fix this hack
 					log.Printf("%s: %v", color.GreenString("[+]")+requestURL, color.GreenString("Vulnerable!"))

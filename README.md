@@ -23,9 +23,9 @@ Plution appends a payload to supplied URLs, naviguates to each URL with headless
 `Passing '-o' followed by a location will output only URLs of pages that were successfully polluted.`
 
 # questions and answers
-* How do I install it?
-`go get -u https://github.com/raverrr/plution`
-* why specifically limit it to checking if window.zzzc resolves?
+* How do I install it?<br />
+`go get -u https://github.com/raverrr/plution`<br />
+* why specifically limit it to checking if window.zzzc resolves?<br />
 `zzzc is a short pattern that is unlikely to already be in a prototype. If you want more freedom in regards to the javascript use https://github.com/detectify/page-fetch instead`
 
 

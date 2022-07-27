@@ -30,6 +30,9 @@ Plution appends a payload to supplied URLs, naviguates to each URL with headless
 * How do I install it?<br />
 `go get -u github.com/raverrr/plution`
 
+  If you experience when installing, saying "'go get' is no longer supported outside a module.", use the below method:<br />
+`GO111MODULE=on go install github.com/raverrr/plution@latest`
+
 * why specifically limit it to checking if window.zzzc is defined?<br />
 `zzzc is a short pattern that is unlikely to already be in a prototype. If you want more freedom in regards to the javascript use https://github.com/detectify/page-fetch instead`
 
